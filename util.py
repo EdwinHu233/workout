@@ -9,21 +9,17 @@ def get_training_max(weight: Number, rep: Number) -> float:
     return one_rm * 0.9
 
 
-def print_bar(msg: str, num_bar: int = 20):
-    bar = '-' * num_bar
-    print(bar, msg, bar)
-
-
 def print_exercise(exercise: str, sets: List[Tuple[int, float]]):
-    training_max = get_training_max(*config.current_data[exercise])
-    print(exercise)
+    training_max = get_training_max(*config.CURRENT_DATA[exercise])
     for percent, reps in sets:
         print('\t{:8.2f}kg, {} reps'.format(training_max * percent, reps))
+    print('\t{:8.2f}kg, {} reps (x5)'.format(training_max *
+                                             config.SUPPLEMENTARY_PERCENT, config.SUPPLEMENTARY_REPS))
 
 
 def print_week(week: int):
-    sets = config.sets_per_week[week - 1]
-    for day in config.DAY_A, config.DAY_B:
-        print_bar('Week {}, {}'.format(week, day))
-        for exercise in config.exercises_per_day[day]:
-            print_exercise(exercise, sets)
+    sets = config.SETS_PER_WEEK[week - 1]
+    for day in range(4):
+        exercise = config.EXERCISE_PER_DAY[day]
+        print('Week {}, Day {}: {}'.format(week, day + 1, exercise))
+        print_exercise(exercise, sets)
