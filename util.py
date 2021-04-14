@@ -13,8 +13,9 @@ def print_exercise(exercise: str, sets: List[Tuple[int, float]]):
     training_max = get_training_max(*config.CURRENT_DATA[exercise])
     for percent, reps in sets:
         print('\t{:8.2f}kg, {} reps'.format(training_max * percent, reps))
-    print('\t{:8.2f}kg, {} reps (x5)'.format(training_max *
-                                             config.SUPPLEMENTARY_PERCENT, config.SUPPLEMENTARY_REPS))
+    print('\t{:8.2f}kg, {} reps (x5)'.format(
+        training_max * config.SUPPLEMENTARY_PERCENT,
+        config.SUPPLEMENTARY_REPS))
 
 
 def print_week(week: int):
